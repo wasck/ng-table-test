@@ -1,4 +1,4 @@
-<div mat-dialog-title>Update Pokemon</div>
+<div mat-dialog-title>{{data ? 'Update': 'Add'}} Pokemon</div>
 
 <div mat-dialog-content>
   <form [formGroup]="form">
@@ -18,5 +18,5 @@
 
   <button mat-button
           [mat-dialog-close]="{pokemon: form.value.name, index: data?.index}"
-          cdkFocusInitial>Update</button>
+          cdkFocusInitial>{{data ? 'Update': 'Add'}}</button>
 </div>

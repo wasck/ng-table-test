@@ -1,0 +1,29 @@
+{
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.formatOnSave": true,
+  "html.autoClosingTags": true,
+  "files.eol": "\n",
+  "html.format.wrapAttributes": "force-aligned",
+  "[html]": {
+    "editor.linkedEditing": true,
+    "editor.formatOnSave": true
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true,
+      "source.organizeImports": true,
+    }
+  },
+  "files.exclude":{
+    "**/.*": false,
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+  },
+}

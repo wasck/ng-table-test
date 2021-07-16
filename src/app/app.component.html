@@ -1,3 +1,17 @@
 <mat-toolbar color="primary">
   <span>Table test</span>
+
+  <span class="spacer"></span>
+
+  <button mat-raised-button>
+    <mat-icon>add</mat-icon>
+    Add
+  </button>
 </mat-toolbar>
+
+<div>
+  <h2>Pokemon</h2>
+  <p *ngFor="let pokemon of pokemon$ | async">
+    {{pokemon.name}}
+  </p>
+</div>

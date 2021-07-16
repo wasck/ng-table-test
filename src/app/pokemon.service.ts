@@ -1,14 +1,13 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 export interface Pokemon {
   name: string;
 }
 
 interface PageResult {
-  count: number;
   results: Array<Pokemon>
 }
 
@@ -24,7 +23,7 @@ export class PokemonService {
   constructor(
     private httpClient: HttpClient
   ) {
-    this.AMOUNT_OF_POKEOMON = 20;
+    this.AMOUNT_OF_POKEOMON = 5;
     this.POKEOMON_API = "https://pokeapi.co/api/v2/pokemon/";
     
     this.pokemons$ = new BehaviorSubject<Array<Pokemon>>([]);
@@ -35,14 +34,28 @@ export class PokemonService {
     return this.pokemons$.asObservable();
   }
 
+  public add(pokemon: string): void {
+    this.pokemons$.value.push({
+      name: pokemon
+    });
+
+    this.pokemons$.next(this.pokemons$.value);
+  }
+
+  public update( pokemon: string, index: number ) {
+    this.pokemons$.value[index].name = pokemon;
+  }
+
   private initializePokemon(amount: number): void {
     const params = new HttpParams()
       .set('limit', amount);
 
     this.httpClient.get<PageResult>(this.POKEOMON_API, { params })
-      .pipe(take(1))
+      .pipe(
+        map( (pageResult: PageResult) => pageResult.results )
+      )
       .subscribe(
-        (pageResult: PageResult) => this.pokemons$.next(pageResult.results)
+        (pokemons: Array<Pokemon>) => this.pokemons$.next(pokemons)
       );
   }
 }

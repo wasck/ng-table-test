@@ -1,0 +1,22 @@
+<div mat-dialog-title>Update Pokemon</div>
+
+<div mat-dialog-content>
+  <form [formGroup]="form">
+    <mat-form-field>
+      <input matInput
+             type="text"
+             formControlName="name">
+    </mat-form-field>
+
+  </form>
+</div>
+
+<div mat-dialog-actions
+     align="end">
+  <button mat-button
+          (click)="onCancel()">Cancel</button>
+
+  <button mat-button
+          [mat-dialog-close]="{pokemon: form.value.name, index: data?.index}"
+          cdkFocusInitial>Update</button>
+</div>

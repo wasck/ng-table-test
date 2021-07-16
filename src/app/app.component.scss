@@ -1,0 +1,13 @@
+.content-container {
+  box-sizing: border-box;
+  padding: 10px;
+
+  table {
+    width: 100%;
+
+    & .table-row:hover {
+      background: #c2185b;
+      cursor: pointer;
+    }
+  }
+}
